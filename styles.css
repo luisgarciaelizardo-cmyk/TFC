@@ -110,7 +110,24 @@ h1, h2, h3 { font-family: 'Space Grotesk', 'Manrope', sans-serif; line-height: 1
   font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: .08em;
   animation: float 6s ease-in-out infinite reverse;
 }
-.nfc-waves { width: 54px; height: 54px; color: var(--blue); }
+.plate img { width: 120px; border-radius: 12px; mix-blend-mode: multiply; }
+
+/* ---------- showcase ---------- */
+.showcase { padding: 0 0 90px; }
+.showcase-grid {
+  display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center;
+  background: #fff; border: 1px solid var(--line); border-radius: 28px; padding: 36px; box-shadow: var(--shadow);
+}
+.showcase-main { margin: 0; border-radius: 20px; overflow: hidden; background: #fff; }
+.showcase-main img { width: 100%; }
+.showcase-copy h2 { font-size: clamp(26px, 3.5vw, 36px); color: var(--navy); }
+.showcase-copy p { color: var(--ink-soft); font-size: 17px; margin: 12px 0 20px; }
+.showcase-thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
+.showcase-thumbs img {
+  width: 100%; aspect-ratio: 3 / 4; object-fit: contain; background: #fff;
+  border: 1px solid var(--line); border-radius: 14px; padding: 6px; transition: transform .2s;
+}
+.showcase-thumbs img:hover { transform: translateY(-4px) rotate(-1deg); }
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 
 /* ---------- sections ---------- */
@@ -120,7 +137,8 @@ h1, h2, h3 { font-family: 'Space Grotesk', 'Manrope', sans-serif; line-height: 1
 .section-head p { color: var(--ink-soft); margin: 12px 0 0; font-size: 17px; }
 
 /* ---------- catalog ---------- */
-.catalog { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.catalog { display: flex; flex-wrap: wrap; justify-content: center; gap: 22px; }
+.catalog .product { flex: 0 1 calc((100% - 44px) / 3); }
 .product {
   background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
   display: flex; flex-direction: column; box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s;
@@ -128,6 +146,9 @@ h1, h2, h3 { font-family: 'Space Grotesk', 'Manrope', sans-serif; line-height: 1
 .product:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
 .product-art { aspect-ratio: 10 / 7; display: grid; place-items: center; }
 .product-art svg { width: 88%; height: auto; }
+.art-photo { position: relative; background: #fff; border-bottom: 1px solid var(--line); overflow: hidden; }
+.art-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 12px; transition: transform .35s; }
+.product:hover .art-photo img { transform: scale(1.05); }
 .art-google { background: linear-gradient(135deg, #eaf2fd, #fdf6e3); }
 .art-web { background: linear-gradient(135deg, #e3eefb, #cfe0f5); }
 .art-site { background: linear-gradient(135deg, #eef3f9, #dfeafa); }
@@ -207,7 +228,7 @@ h1, h2, h3 { font-family: 'Space Grotesk', 'Manrope', sans-serif; line-height: 1
 
 /* ---------- responsive ---------- */
 @media (max-width: 1040px) {
-  .catalog { grid-template-columns: repeat(2, 1fr); }
+  .catalog .product { flex-basis: calc((100% - 22px) / 2); }
   .clients { grid-template-columns: repeat(4, 1fr); }
 }
 @media (max-width: 860px) {
@@ -217,18 +238,21 @@ h1, h2, h3 { font-family: 'Space Grotesk', 'Manrope', sans-serif; line-height: 1
   .phone { right: 10px; }
   .steps { grid-template-columns: 1fr; }
   .clients { grid-template-columns: repeat(3, 1fr); }
+  .showcase-grid { grid-template-columns: 1fr; gap: 28px; }
   .cta { grid-template-columns: 1fr; text-align: center; padding: 30px 22px; }
   .cta-logo { width: 150px; margin: 0 auto; }
   .cta .hero-ctas { justify-content: center; }
   .nav-links a:not(.btn) { display: none; }
 }
 @media (max-width: 560px) {
-  .catalog { grid-template-columns: 1fr; }
+  .catalog .product { flex-basis: 100%; }
+  .showcase-grid { padding: 18px; }
   .clients { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .section { padding: 64px 0; }
   .brand small { display: none; }
   .hero-stats { gap: 22px; }
   .plate { width: 160px; padding: 16px 12px; }
+  .plate img { width: 96px; }
   .phone { width: 200px; height: 390px; }
 }
 @media (prefers-reduced-motion: reduce) {
